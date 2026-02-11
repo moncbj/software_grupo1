@@ -1,13 +1,303 @@
-<!DOCTYPE html> 
-<html lang="es"> 
-<head> 
-<meta charset="UTF-8"> 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-<title>Proyecto de Grupo</title> 
-</head> 
-<body> 
-<h1>Bienvenidos al Proyecto de Grupo</h1> 
-<p>Colaborador 1: Gabriela Muñoz </p> 
-<p>Estudiante de Ciencia de Datos :D </p> 
-</body> 
-</html> 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Gatitos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .cat-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #ffe6f2, #e6f7ff);
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 30px 0;
+            font-size: 3rem;
+            color: #ff5fa2;
+            letter-spacing: 2px;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: #ffb3d9;
+            transform: translateX(-50%);
+        }
+
+        .event {
+            display: flex;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .event:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .content {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 45%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .year {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff5fa2;
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .img-box {
+            width: 100%;
+            height: 180px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            border: 2px dashed #ccc;
+        }
+
+        .dot {
+            width: 18px;
+            height: 18px;
+            background: #ff5fa2;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .event {
+                flex-direction: column;
+                padding-left: 40px;
+            }
+
+            .event:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .content {
+                width: 100%;
+            }
+
+            .dot {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Mis Gatitos 🐾 Gaby</h1>
+
+<div class="timeline">
+
+    <!-- 2014 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2014</div>
+            <div class="desc">Este fue el año en el que adoptamos a ambos gatitos, 
+               Sally es la gris y nacio en marzo del 2013, Jack es el blanco y nacio 
+               en mayo (como yo :D) del 2014
+            </div>
+            <img src="img/2014.jpeg" alt="Mis gatitos" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2015 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2015</div>
+            <div class="desc"> Ahi en donde los ven, tomo como 3 meses pa que se llevaran bien, ahora son inseparables
+            </div>
+            <img src="img/2015.jpeg" alt="Mis gatito 2" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2016 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2016</div>
+            <div class="desc">Jack y sus maneras de dormir bien raras</div>
+            <img src="img/2016.jpeg" alt="Mis gatitos 2016" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2017 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2017</div>
+            <div class="desc">A Sally le gusta meterse en los lugares mas escondidos </div>
+            <img src="img/2017.jpeg" alt="Mis gatitos 2017" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2018 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2018</div>
+            <div class="desc">Y si no son escondidos son raros</div>
+            <img src="img/2018.jpeg" alt="Mis gatitos 2018" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2019 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2019</div>
+            <div class="desc">Sally termino siendo una mami pa Jack (se echan unos arrunchis muy antojables)</div>
+            <img src="img/2019.jpeg" alt="Mis gatitos 2019" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2020 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2020</div>
+            <div class="desc">DJ Jack</div>
+            <img src="img/2020.jpeg" alt="Mis gatitos 2020" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2021 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2021</div>
+            <div class="desc">Sally en la alacena de la comida</div>
+            <img src="img/2021.jpeg" alt="Mis gatitos 2021" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2022</div>
+            <div class="desc">primera y unica vez que les compramos ropa (QUE GORDOOOS)</div>
+            <img src="img/2022.jpeg" alt="Mis gatitos 2022" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2023</div>
+            <div class="desc">Sally tiene 54641 camas y cosas pa ella y aun asi prefiere una bolsa de Rappi</div>
+            <img src="img/2023.jpeg" alt="Mis gatitos 2023" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2024</div>
+            <div class="desc">Arrunchis de ellos ser como: </div>
+            <img src="img/2024.jpeg" alt="Mis gatitos 2024" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2025 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2025</div>
+            <div class="desc">Jack con un gorrito de cumple</div>
+            <img src="img/2025.jpeg" alt="Mis gatitos 2025" class="cat-img">
+        </div>
+    </div>
+
+    <!-- 2026 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">2026</div>
+            <div class="desc">Mis dos bellos gordos (ni se nota que ya van a cumplir 13 y 12 años)</div>
+            <img src="img/2026.jpeg" alt="Mis gatitos 2026" class="cat-img">
+        </div>
+    </div>
+
+        <!-- Extra 1 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">Extra</div>
+            <div class="desc">JACK BEBEEEE :D</div>
+            <img src="img/Jackbb.jpeg" alt="Mis gatitos 2026" class="cat-img">
+        </div>
+    </div>
+
+            <!-- Extra 2 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">Extra 2</div>
+            <div class="desc">Sally metida en lugares raros x2</div>
+            <img src="img/Sally.jpeg" alt="Mis gatitos 2026" class="cat-img">
+        </div>
+    </div>
+
+                <!-- Extra 3 -->
+    <div class="event">
+        <div class="dot"></div>
+        <div class="content">
+            <div class="year">Extra 3</div>
+            <div class="desc">mi papi: "Los gatos atraparon un raton"</div>
+            <img src="img/raton.jpeg" alt="Mis gatitos 2026" class="cat-img">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
