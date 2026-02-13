@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Isabella • Personal Index</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#070A17;
+      --card:rgba(255,255,255,.06);
+      --border:rgba(255,255,255,.12);
+      --text:#EAF0FF;
+      --muted:#A8B3D6;
+      --neon1:#22D3EE;
+      --neon2:#A78BFA;
+      --neon3:#F472B6;
+      --ok:#34D399;
+      --warn:#FBBF24;
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(900px 400px at 10% 10%, rgba(34,211,238,.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 30%, rgba(167,139,250,.16), transparent 60%),
+        radial-gradient(900px 500px at 50% 90%, rgba(244,114,182,.12), transparent 60%),
+        linear-gradient(180deg, #050616, var(--bg));
+      font-family: Rubik, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      padding:24px;
+      overflow-x:hidden;
+    }
+    .wrap{max-width:1050px;margin:0 auto}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      margin-bottom:18px;
+    }
+    .logo{
+      display:flex;align-items:center;gap:12px;
+    }
+    .orb{
+      width:42px;height:42px;border-radius:14px;
+      background: conic-gradient(from 180deg, var(--neon1), var(--neon2), var(--neon3), var(--neon1));
+      box-shadow: 0 0 18px rgba(34,211,238,.35), 0 0 26px rgba(167,139,250,.25);
+    }
+    .titleblock h1{
+      margin:0;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      letter-spacing:.2px;
+      font-size:24px;
+      line-height:1.15;
+    }
+    .titleblock p{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+    .chiprow{display:flex;gap:10px;flex-wrap:wrap}
+    .chip{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      backdrop-filter: blur(10px);
+    }
+    .chip b{color:var(--text)}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+      .topbar{flex-direction:column;align-items:flex-start}
+    }
+
+    .card{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(450px 220px at 10% 0%, rgba(34,211,238,.22), transparent 60%),
+                  radial-gradient(450px 220px at 90% 10%, rgba(167,139,250,.18), transparent 60%);
+      opacity:.7;
+      pointer-events:none;
+    }
+    .card > *{position:relative; z-index:1}
+
+    .hero{
+      padding:18px;
+      display:flex; gap:16px; align-items:stretch;
+    }
+    .avatar{
+      flex:0 0 150px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:
+        linear-gradient(0deg, rgba(7,10,23,.55), rgba(7,10,23,.05)),
+        url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=60");
+      background-size:cover;
+      background-position:center;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
+    }
+    .hero h2{
+      margin:0;
+      font-family:"Space Grotesk", system-ui, sans-serif;
+      font-size:30px;
+      letter-spacing:.2px;
+    }
+    .hero p{margin:10px 0 0;color:var(--muted);line-height:1.5}
+
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    a.btn{
+      text-decoration:none;
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      color:var(--text);
+      background: rgba(255,255,255,.05);
+      transition:.15s;
+    }
+    a.btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.25)}
+    a.btn.primary{
+      border-color: transparent;
+      background: linear-gradient(90deg, rgba(34,211,238,.9), rgba(167,139,250,.9));
+      color:#06101a;
+      font-weight:800;
+    }
+
+    .twocol{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    @media (max-width: 700px){
+      .twocol{grid-template-columns:1fr}
+      .hero{flex-direction:column}
+      .avatar{flex:0 0 210px}
+    }
+
+    .mini{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:12px;
+      background: rgba(255,255,255,.04);
+    }
+    .mini h3{margin:0 0 8px;font-size:14px;color:var(--text)}
+    .mini p, .mini li{color:var(--muted);font-size:13px;line-height:1.5}
+    ul{margin:0;padding-left:18px}
+
+    .kpi{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    .stat{
+      padding:12px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .stat .label{font-size:12px;color:var(--muted)}
+    .stat .value{
+      margin-top:6px;
+      font-family:"Space Grotesk", system-ui, sans-serif;
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:.2px;
+    }
+    .value.ok{color:var(--ok)}
+    .value.warn{color:var(--warn)}
+
+    .timeline{display:grid;gap:10px;margin-top:10px}
+    .step{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;margin-top:5px;
+      background: var(--neon1);
+      box-shadow: 0 0 14px rgba(34,211,238,.45);
+    }
+    code{
+      background: rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.10);
+      padding:2px 6px;
+      border-radius:10px;
+      color:#DDE7FF;
+      font-size:12px;
+    }
+
+    footer{
+      margin-top:16px;
+      color:rgba(234,240,255,.75);
+      font-size:12px;
+      text-align:center;
+    }
+    .tag{
+      display:inline-flex;gap:6px;align-items:center;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="logo">
+        <div class="orb" aria-hidden="true"></div>
+        <div class="titleblock">
+          <h1>Personal Index • Colaboración con Git/GitHub</h1>
+          <p>Archivo: <b>indexIsabella.html</b> • Rama: <b>isabella</b></p>
+        </div>
+      </div>
+
+      <div class="chiprow">
+        <div class="chip"><b>Curso:</b> Desarrollo de Software</div>
+        <div class="chip"><b>Objetivo:</b> trabajar sin mezclar versiones</div>
+        <div class="chip"><b>Status:</b> listo para PR ✅</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Columna izquierda -->
+      <section class="card hero">
+        <div class="avatar" role="img" aria-label="Imagen decorativa tecnológica"></div>
+        <div style="flex:1">
+          <h2>Isabella Achury 🚀</h2>
+          <p>
+            Este es mi <b>index personal</b> para el laboratorio. La idea es subirlo a mi rama,
+            hacer <i>commit</i> y luego crear el <b>Pull Request</b> hacia <code>main</code>.
+          </p>
+
+          <div class="btnrow">
+            <a class="btn primary" href="#misiones">🎮 Ver misión</a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">🌐 GitHub</a>
+            <a class="btn" href="https://git-scm.com/book/en/v2" target="_blank" rel="noreferrer">📘 Pro Git</a>
+          </div>
+
+          <div class="twocol">
+            <div class="mini">
+              <h3>⚙️ Comandos clave</h3>
+              <ul>
+                <li><code>git checkout -b isabella</code> crear rama</li>
+                <li><code>git add indexIsabella.html</code> preparar cambios</li>
+                <li><code>git commit -m "..."</code> registrar cambios</li>
+                <li><code>git push -u origin isabella</code> subir rama</li>
+                <li>PR: comparar <code>isabella</code> → <code>main</code></li>
+              </ul>
+            </div>
+
+            <div class="mini">
+              <h3>✨ ¿Por qué rama propia?</h3>
+              <p>
+                Evita sobrescribir el trabajo de otras personas. Cada integrante aporta su archivo
+                (<code>indexNAME.html</code>) y luego se integra con Pull Request.
+              </p>
+              <div class="kpi">
+                <div class="stat">
+                  <div class="label">Riesgo de conflictos</div>
+                  <div class="value ok">Bajo</div>
+                </div>
+                <div class="stat">
+                  <div class="label">Orden del trabajo</div>
+                  <div class="value ok">Alto</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Columna derecha -->
+      <aside class="card">
+        <h3 id="misiones" style="margin:0;font-family:'Space Grotesk',system-ui,sans-serif;font-size:18px;">
+          🧩 Misión del laboratorio
+        </h3>
+        <p style="margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.5;">
+          Completa la secuencia como en un juego: cada paso desbloquea el siguiente.
+        </p>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <b>1) Crear tu archivo</b><br>
+              <span style="color:var(--muted)">Guardar <code>indexIsabella.html</code> en la carpeta del repo.</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot" aria-hidden="true" style="background:var(--neon2);box-shadow:0 0 14px rgba(167,139,250,.45)"></div>
+            <div>
+              <b>2) Versionar</b><br>
+              <span style="color:var(--muted)"><code>git add</code> → <code>git commit</code></span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot" aria-hidden="true" style="background:var(--neon3);box-shadow:0 0 14px rgba(244,114,182,.45)"></div>
+            <div>
+              <b>3) Subir a GitHub</b><br>
+              <span style="color:var(--muted)"><code>git push -u origin isabella</code></span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="dot" aria-hidden="true" style="background:var(--ok);box-shadow:0 0 14px rgba(52,211,153,.45)"></div>
+            <div>
+              <b>4) Crear Pull Request</b><br>
+              <span style="color:var(--muted)">Base: <code>main</code> • Compare: <code>isabella</code></span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+          <span class="tag">✅ HTML + CSS</span>
+          <span class="tag">🖼️ Imagen incluida</span>
+          <span class="tag">🧠 Diseño diferente</span>
+        </div>
+
+        <div class="mini" style="margin-top:12px">
+          <h3>📝 Nota para el informe</h3>
+          <p>
+            Dificultades comunes: confusión de ramas, nombre del archivo en mayúsculas/minúsculas,
+            olvidar <code>git add</code> antes del commit, y configurar correctamente el PR.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      Hecho por Isabella • index personal para laboratorio • listo para subir a mi rama
+    </footer>
+  </div>
+</body>
+</html>
