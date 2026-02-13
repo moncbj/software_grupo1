@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gatito interactivo 🐱</title>
+
+<style>
+body{
+    background-color:#fce4ec;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+    font-family:sans-serif;
+    overflow:hidden;
+}
+
+.instrucciones{
+    position:absolute;
+    top:20px;
+    color:#ad1457;
+    font-weight:bold;
+}
+
+.cara{
+    width:300px;
+    height:250px;
+    background:#424242;
+    border-radius:50% 50% 45% 45%;
+    position:relative;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+    cursor:pointer;
+    transition: transform 0.2s;
+}
+
+/* Orejas */
+.cara::before, .cara::after{
+    content:'';
+    position:absolute;
+    top:-20px;
+    width:80px;
+    height:100px;
+    background:#424242;
+    z-index:-1;
+}
+.cara::before{left:30px;border-radius:10px 100% 0 0;transform:rotate(-15deg);}
+.cara::after{right:30px;border-radius:100% 10px 0 0;transform:rotate(15deg);}
+
+.ojos-container{
+    display:flex;
+    justify-content:space-around;
+    margin-top:90px;
+    padding:0 40px;
+}
+
+.ojo{
+    width:60px;
+    height:60px;
+    background:white;
+    border-radius:50%;
+    position:relative;
+    overflow:hidden;
+}
+
+.pupila{
+    width:30px;
+    height:30px;
+    background:#212121;
+    border-radius:50%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* Parpadeo */
+.ojo::after{
+    content:'';
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#424242;
+    top:-100%;
+    animation: blink 5s infinite;
+}
+@keyframes blink{
+    0%,95%,100%{top:-100%}
+    97%{top:0}
+}
+
+.nariz{
+    width:20px;
+    height:15px;
+    background:#ff8a80;
+    border-radius:50%;
+    margin:20px auto;
+    transition:transform 0.1s;
+}
+.nariz:hover{transform:scale(1.2);}
+
+/* Bigotes */
+.bigote{
+    position:absolute;
+    width:60px;
+    height:2px;
+    background:#ccc;
+    top:160px;
+}
+.izq1{left:40px}
+.izq2{left:40px; top:170px}
+.der1{right:40px}
+.der2{right:40px; top:170px}
+
+/* Corazones */
+.corazon{
+    position:absolute;
+    color:#f06292;
+    font-size:20px;
+    animation: subir 1.5s forwards;
+}
+@keyframes subir{
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="instrucciones">¡Tócame la nariz! 💕</div>
+
+<div class="cara" id="gato">
+    <div class="ojos-container">
+        <div class="ojo"><div class="pupila"></div></div>
+        <div class="ojo"><div class="pupila"></div></div>
+    </div>
+
+    <div class="nariz" id="nariz"></div>
+
+    <div class="bigote izq1"></div>
+    <div class="bigote izq2"></div>
+    <div class="bigote der1"></div>
+    <div class="bigote der2"></div>
+</div>
+
+<audio id="miau" src="https://assets.mixkit.co/active_storage/sfx/951/951-preview.mp3"></audio>
+
+<script>
+const pupilas = document.querySelectorAll('.pupila');
+const nariz = document.getElementById('nariz');
+const audio = document.getElementById('miau');
+const gato = document.getElementById('gato');
+
+document.addEventListener('mousemove', e=>{
+    const x = (e.clientX / window.innerWidth) * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+
+    pupilas.forEach(p=>{
+        p.style.left = x + '%';
+        p.style.top = y + '%';
+        p.style.transform = `translate(-${x}%, -${y}%)`;
+    });
+});
+
+nariz.addEventListener('click', ()=>{
+    audio.currentTime = 0;
+    audio.play();
+
+    gato.style.transform = "scale(1.05)";
+    setTimeout(()=>gato.style.transform="scale(1)",200);
+
+    // corazones
+    for(let i=0;i<5;i++){
+        const c = document.createElement('div');
+        c.className="corazon";
+        c.textContent="💖";
+        c.style.left = Math.random()*300 + "px";
+        c.style.top = "150px";
+        gato.appendChild(c);
+        setTimeout(()=>c.remove(),1500);
+    }
+});
+</script>
+
+</body>
+</html>
